@@ -10,6 +10,15 @@ public enum MonacoTheme
   Black = 2,
 }
 ```
+---------
+```cs
+public enum WhitespaceEnum
+{
+  None = 0,
+  Boundary = 1,
+  All = 2,
+}
+```
 
 # Structs
 ```cs
