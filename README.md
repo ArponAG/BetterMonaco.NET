@@ -2,8 +2,8 @@
 Binding for Microsoft's Monaco Editor Based off Monaco.NET.
 
 Credits to:
-CEFSharp - Web Browser used to render Monaco Editor.
-op0x59 - Creating Monaco.NET.
+- CEFSharp - Web Browser used to render Monaco Editor.
+- op0x59 - Creating Monaco.NET.
 
 # What's different between this and Monaco.NET ?
 Monaco.NET wasn't working correctly due to it using WebBrowser.
