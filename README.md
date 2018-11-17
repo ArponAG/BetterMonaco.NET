@@ -34,11 +34,11 @@ public Form1()
   InitializeComponent();
   Monaco monaco1 = new Monaco(); //Creates the Monaco editor.
   monaco1.Dock = DockStyle.Fill; //The control will take the whole form.
-  this.Controls.Add(monaco1);
+  this.Controls.Add(monaco1); //Add to the form.
   
   monaco1.Initialize(); //Loads Monaco.html. REMINDER: The Monaco folder must be in your project's .exe location. You can still specify the path like this: monaco1.Initialize("C:/Monaco/Monaco.html")
 }
 ```
-
+Now, build and run your app. (NOTE: Monaco Editor may take up a minute to load. If it doesn't load, post a new issue.)
 Done! Now you have access to Microsoft's Monaco Editor in C#!
 Check API.md for all the available functions.
