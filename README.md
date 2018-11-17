@@ -34,6 +34,7 @@ public Form1()
   InitializeComponent();
   Monaco monaco1 = new Monaco(); //Creates the Monaco editor.
   monaco1.Dock = DockStyle.Fill; //The control will take the whole form.
+  this.Controls.Add(monaco1);
   
   monaco1.Initialize(); //Loads Monaco.html. REMINDER: The Monaco folder must be in your project's .exe location. You can still specify the path like this: monaco1.Initialize("C:/Monaco/Monaco.html")
 }
