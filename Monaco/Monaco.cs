@@ -23,6 +23,13 @@ namespace BetterMonacoNET
         Dark = 1,
         Black = 2,
     }
+
+    public enum WhitespaceEnum
+    {
+        None = 0,
+        Boundary = 1,
+        All = 2,
+    }
     
 
     public struct MonacoSettings
@@ -117,7 +124,7 @@ namespace BetterMonacoNET
         /// <summary>
         /// Determines Whether the Monaco Editor will render Whitespace
         /// </summary>
-        public string RenderWhitespace
+        public WhitespaceEnum RenderWhitespace
         {
             get
             {
@@ -127,13 +134,13 @@ namespace BetterMonacoNET
             {
                 switch (value)
                 {
-                    case "none":
+                    case WhitespaceEnum.None:
                         RenderWhitespaceObj = ((dynamic)"none").ToString();
                         break;
-                    case "all":
+                    case WhitespaceEnum.All:
                         RenderWhitespaceObj = ((dynamic)"all").ToString();
                         break;
-                    case "boundary":
+                    case WhitespaceEnum.Boundary:
                         RenderWhitespaceObj = ((dynamic)"boundary").ToString();
                         break;
                     default:
