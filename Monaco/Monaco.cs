@@ -97,11 +97,11 @@ namespace BetterMonacoNET
         {
             get
             {
-                return Boolean.Parse((dynamic)MinimapEnabledObj.ToString());
+                return MinimapEnabledObj;
             }
             set
             {
-                MinimapEnabledObj = Boolean.Parse((dynamic)value.ToString());
+                MinimapEnabledObj = value;
             }
         }
 
@@ -112,15 +112,15 @@ namespace BetterMonacoNET
         {
             get
             {
-                return ((dynamic)GetText()).ToString();
+                return GetText();
             }
             set
             {
-                SetText(((dynamic)value).ToString());
+                SetText(value);
             }
         }
 
-        private dynamic RenderWhitespaceObj = (dynamic)"none";
+        private string RenderWhitespaceObj = "none";
         /// <summary>
         /// Determines Whether the Monaco Editor will render Whitespace
         /// </summary>
@@ -128,23 +128,23 @@ namespace BetterMonacoNET
         {
             get
             {
-                return RenderWhitespaceObj.ToString();
+                return RenderWhitespaceObj;
             }
             set
             {
                 switch (value)
                 {
                     case WhitespaceEnum.None:
-                        RenderWhitespaceObj = ((dynamic)"none").ToString();
+                        RenderWhitespaceObj = "none";
                         break;
                     case WhitespaceEnum.All:
-                        RenderWhitespaceObj = ((dynamic)"all").ToString();
+                        RenderWhitespaceObj = "all";
                         break;
                     case WhitespaceEnum.Boundary:
-                        RenderWhitespaceObj = ((dynamic)"boundary").ToString();
+                        RenderWhitespaceObj = "boundary";
                         break;
                     default:
-                        RenderWhitespaceObj = ((dynamic)"none").ToString();
+                        RenderWhitespaceObj = "none";
                         break;
                 }
             }
@@ -156,9 +156,9 @@ namespace BetterMonacoNET
         /// <param name="theme"></param>
         public void SetTheme(MonacoTheme theme)
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
-                switch ((MonacoTheme)(dynamic)theme)
+                switch (theme)
                 {
                     case MonacoTheme.Dark:
                         chromeBrowser.ExecuteScriptAsync("SetTheme('Dark')");
@@ -173,19 +173,19 @@ namespace BetterMonacoNET
             }
             else
             {
-                throw new Exception((dynamic)"Cannot set Monaco theme while Document is null.");
+                throw new Exception("Cannot set Monaco theme while Document is null.");
             }
         }
 
         public void SetLanguage(string x)
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
                 chromeBrowser.ExecuteScriptAsync("SetLanguage", new object[] { x });
             }
             else
             {
-                throw new Exception((dynamic)"Cannot set Monaco theme while Document is null.");
+                throw new Exception("Cannot set Monaco theme while Document is null.");
             }
         }
 
@@ -195,13 +195,13 @@ namespace BetterMonacoNET
         /// <param name="text"></param>
         public void SetText(string text)
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
                 chromeBrowser.ExecuteScriptAsync("SetText", new object[] { text });
             }
             else
             {
-                throw new Exception((dynamic)"Cannot set Monaco's text while Document is null.");
+                throw new Exception("Cannot set Monaco's text while Document is null.");
             }
         }
 
@@ -212,7 +212,7 @@ namespace BetterMonacoNET
         public string GetText()
         {
             string a = chromeBrowser.EvaluateScriptAsync("GetText").Result.ToString();
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
                 var result = chromeBrowser.GetMainFrame().EvaluateScriptAsync("GetText()").Result;
                 return (string)result.Result;
@@ -227,25 +227,25 @@ namespace BetterMonacoNET
         /// <param name="text"></param>
         public void AppendText(string text)
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
-                SetText((dynamic)GetText() + text);
+                SetText(GetText() + text);
             }
             else
             {
-                throw new Exception((dynamic)"Cannot append Monaco's text while Document is null.");
+                throw new Exception("Cannot append Monaco's text while Document is null.");
             }
         }
 
         public void GoToLine(int lineNumber)
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
                 chromeBrowser.ExecuteScriptAsync("SetScroll", new object[] { lineNumber });
             }
             else
             {
-                throw new Exception((dynamic)"Cannot go to Line in Monaco's Editor while Document is null.");
+                throw new Exception("Cannot go to Line in Monaco's Editor while Document is null.");
             }
         }
 
@@ -254,13 +254,13 @@ namespace BetterMonacoNET
         /// </summary>
         public void EditorRefresh()
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
                 chromeBrowser.ExecuteScriptAsync("Refresh");
             }
             else
             {
-                throw new Exception((dynamic)"Cannot refresh Monaco's editor while the Document is null.");
+                throw new Exception("Cannot refresh Monaco's editor while the Document is null.");
             }
         }
 
@@ -270,22 +270,22 @@ namespace BetterMonacoNET
         /// <param name="settings"></param>
         public void UpdateSettings(MonacoSettings settings)
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
-                this.chromeBrowser.ExecuteScriptAsync("SwitchMinimap", new object[] { (dynamic)settings.MinimapEnabled });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchReadonly", new object[] { (dynamic)settings.ReadOnly });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchRenderWhitespace", new object[] { (dynamic)settings.RenderWhitespace });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchLinks", new object[] { (dynamic)settings.Links });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchLineHeight", new object[] { (dynamic)settings.LineHeight });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchFontSize", new object[] { (dynamic)settings.FontSize });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchFolding", new object[] { (dynamic)settings.Folding });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchAutoIndent", new object[] { (dynamic)settings.AutoIndent });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchFontFamily", new object[] { (dynamic)settings.FontFamily });
-                this.chromeBrowser.ExecuteScriptAsync("SwitchFontLigatures", new object[] { (dynamic)settings.FontLigatures });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchMinimap", new object[] { settings.MinimapEnabled });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchReadonly", new object[] { settings.ReadOnly });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchRenderWhitespace", new object[] { settings.RenderWhitespace });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchLinks", new object[] { settings.Links });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchLineHeight", new object[] { settings.LineHeight });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchFontSize", new object[] { settings.FontSize });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchFolding", new object[] { settings.Folding });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchAutoIndent", new object[] { settings.AutoIndent });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchFontFamily", new object[] { settings.FontFamily });
+                this.chromeBrowser.ExecuteScriptAsync("SwitchFontLigatures", new object[] { settings.FontLigatures });
             }
             else
             {
-                throw new Exception((dynamic)"Cannot change Monaco's settings while Document is null.");
+                throw new Exception("Cannot change Monaco's settings while Document is null.");
             }
         }
 
@@ -298,18 +298,18 @@ namespace BetterMonacoNET
         /// <param name="insert"></param>
         public void AddIntellisense(string label, string type, string description, string insert)
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
                 chromeBrowser.ExecuteScriptAsync("AddIntellisense", new object[] {
-                    (dynamic)label,
-                    (dynamic)type,
-                    (dynamic)description,
-                    (dynamic)insert
+                    label,
+                    type,
+                    description,
+                    insert
                 });
             }
             else
             {
-                throw new Exception((dynamic)"Cannot edit Monaco's Intellisense while Document is null.");
+                throw new Exception("Cannot edit Monaco's Intellisense while Document is null.");
             }
         }
 
@@ -323,13 +323,13 @@ namespace BetterMonacoNET
         /// <param name="message"></param>
         public void ShowSyntaxError(int line, int column, int endLine, int endColumn, string message)
         {
-            if ((dynamic)this.chromeBrowser != null)
+            if (this.chromeBrowser != null)
             {
                 this.chromeBrowser.ExecuteScriptAsync("ShowErr", new object[] { line, column, endLine, endColumn, message });
             }
             else
             {
-                throw new Exception((dynamic)"Cannot show Syntax Error for Monaco while Document is null.");
+                throw new Exception("Cannot show Syntax Error for Monaco while Document is null.");
             }
         }
     }
